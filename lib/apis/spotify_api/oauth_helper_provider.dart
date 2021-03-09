@@ -1,7 +1,7 @@
 //package imports
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
-import 'package:flutter/cupertino.dart';
 import 'package:oauth2_client/access_token_response.dart';
 import 'package:oauth2_client/oauth2_helper.dart';
 import 'package:oauth2_client/oauth2_client.dart';
@@ -27,8 +27,8 @@ class SpotifyOAuth2Client extends OAuth2Client {
 
 class OAuthHelper with ChangeNotifier {
   static final SpotifyOAuth2Client _client = SpotifyOAuth2Client(
-    customUriScheme: 'shmoke.spotistats',
-    redirectUri: 'shmoke.spotistats://spotistats/redirect',
+    customUriScheme: 'shmoke.playtransfer',
+    redirectUri: 'shmoke.playtransfer://playtransfer/redirect',
   );
 
   final OAuth2Helper _helper = OAuth2Helper(
@@ -45,11 +45,11 @@ class OAuthHelper with ChangeNotifier {
 
   //code whcih was not ported to the spotuify api class and is stall passed to theis place
 
-  Future<AccessTokenResponse> login() async {
+  Future<bool> login() async {
     //Used to login from outside
     final AccessTokenResponse token = await _helper.getToken();
     notifyListeners();
-    return token;
+    return token.isValid();
   }
 
   Future<http.Response> get(String url) async {

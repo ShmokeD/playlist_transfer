@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/foundation.dart';
 import 'package:oauth2_client/access_token_response.dart';
@@ -14,11 +15,15 @@ class SpotifyApi with ChangeNotifier {
   final OAuthHelper _helper = OAuthHelper();
 
   Future<bool> get isLoggedIn async {
-    return (await _helper.token) != null ? true : false;
+    return (await _helper.token) != null;
   }
 
-  Future<AccessTokenResponse> login() {
-    return _helper.login();
+  Future<bool> login() async {
+    final bool _response = await _helper.login().catchError((Object error) {
+      print('Error!!');
+      return false;
+    });
+    return _response;
   }
 
   Future<PrivateUserObject> getUserProfile() async {
