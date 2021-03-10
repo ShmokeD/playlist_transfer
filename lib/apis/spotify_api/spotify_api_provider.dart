@@ -7,7 +7,7 @@ import 'package:flutter/foundation.dart';
 import 'package:oauth2_client/access_token_response.dart';
 import 'package:oauth2_client/oauth2_response.dart';
 
-import './oauth_helper_provider.dart';
+import 'spotify_oauth_helper.dart';
 import './spotify_api_objects/spotify_private_user.dart';
 
 // This Wrapper around helper is created to help in organize requests.
