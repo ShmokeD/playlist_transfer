@@ -1,4 +1,4 @@
-package com.shmokedev.playlist_transfer
+package com.shmokedev.playlisttransfer
 
 import io.flutter.embedding.android.FlutterActivity
 

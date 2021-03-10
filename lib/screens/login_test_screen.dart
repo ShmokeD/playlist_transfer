@@ -72,13 +72,12 @@ class _LoginScreenState extends State<LoginScreen> {
             width: double.infinity,
             padding: const EdgeInsets.all(10),
             child: FutureBuilder(
-              future: _youtubeHelper.token,
-              builder: (_, AsyncSnapshot<AccessTokenResponse> snapshot) =>
-                  snapshot.hasData
-                      ? snapshot.data.isValid()
-                          ? const Text('Logged in to Youtube')
-                          : const Text('Not Logged in to YouTube')
-                      : const Text('Waiting for YouTube Login'),
+              future: _youtubeHelper.isLoggedIn,
+              builder: (_, AsyncSnapshot<bool> snapshot) => snapshot.hasData
+                  ? snapshot.data
+                      ? const Text('Logged in to Youtube')
+                      : const Text('Not Logged in to YouTube')
+                  : const Text('Waiting for YouTube Login'),
             ),
           )
         ],
