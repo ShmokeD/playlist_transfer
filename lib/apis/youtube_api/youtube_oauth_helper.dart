@@ -12,7 +12,8 @@ class GoogleOauth2Helper {
   }
 
   Future<bool> revokeLogin() async {
-    return true;
+    await _helper.disconnect();
+    return _helper.isSignedIn();
   }
 
   Future<bool> get isLoggedIn async {

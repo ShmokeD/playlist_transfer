@@ -27,8 +27,8 @@ class SpotifyOAuth2Client extends OAuth2Client {
 
 class OAuthHelper {
   static final SpotifyOAuth2Client _client = SpotifyOAuth2Client(
-    customUriScheme: 'com.shmokedev.playtransfer',
-    redirectUri: 'com.shmokedev.playtransfer:playtransfer/redirect',
+    customUriScheme: 'shmoke.playtransfer',
+    redirectUri: 'shmoke.playtransfer://playtransfer/redirect',
   );
 
   final OAuth2Helper _helper = OAuth2Helper(

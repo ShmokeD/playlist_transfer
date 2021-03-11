@@ -7,6 +7,8 @@ import 'package:provider/provider.dart';
 import '../apis/spotify_api/spotify_api_provider.dart';
 import '../apis/youtube_api/youtube_oauth_helper.dart';
 
+import 'package:flutter_signin_button/flutter_signin_button.dart';
+
 class LoginScreen extends StatefulWidget {
   @override
   _LoginScreenState createState() => _LoginScreenState();
@@ -55,13 +57,16 @@ class _LoginScreenState extends State<LoginScreen> {
           const Divider(
             height: 30,
           ),
-          Row(
+          Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              ElevatedButton(
+              SignInButton(Buttons.Google,
                   onPressed: () =>
-                      _youtubeHelper.login().then((_) => setState(() {})),
-                  child: const Text('Login With Youtube')),
+                      _youtubeHelper.login().then((_) => setState(() {}))),
+              // ElevatedButton(
+              //     onPressed: () =>
+              //         _youtubeHelper.login().then((_) => setState(() {})),
+              //     child: const Text('Login With Youtube')),
               ElevatedButton(
                   onPressed: () =>
                       _youtubeHelper.revokeLogin().then((_) => setState(() {})),
@@ -78,6 +83,15 @@ class _LoginScreenState extends State<LoginScreen> {
                       ? const Text('Logged in to Youtube')
                       : const Text('Not Logged in to YouTube')
                   : const Text('Waiting for YouTube Login'),
+            ),
+          ),
+          Expanded(
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: ElevatedButton(
+                child: const Text('Next'),
+                onPressed: () {},
+              ),
             ),
           )
         ],
