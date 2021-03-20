@@ -8,6 +8,8 @@ import 'package:oauth2_client/access_token_response.dart';
 import 'package:oauth2_client/oauth2_response.dart';
 
 import 'spotify_oauth_helper.dart';
+import './spotify_api_objects/spotify_external_url.dart';
+import './spotify_api_objects/spotify_playlist_object.dart';
 import './spotify_api_objects/spotify_private_user.dart';
 
 // This Wrapper around helper is created to help in organize requests.
@@ -26,21 +28,28 @@ class SpotifyApi with ChangeNotifier {
     return _response;
   }
 
-  Future<PrivateUserObject> getUserProfile() async {
-    final http.Response resp =
+  Future<SpotifyPrivateUser> getUserProfile() async {
+    final http.Response _resp =
         await _helper.get('https://api.spotify.com/v1/me');
-    return PrivateUserObject.fromJson(jsonDecode(resp.body));
+    return SpotifyPrivateUser.fromJson(jsonDecode(_resp.body));
   }
 
   Stream<String> currentlyPlaying() async* {
     while (true) {
-      final http.Response resp =
+      final http.Response _resp =
           await _helper.get('https://api.spotify.com/v1/me/player');
       await Future<String>.delayed(const Duration(
           seconds:
               5)); //specified type because flutter whines and throws errors and i cant be bothered really
-      yield resp.body.toString();
+      yield _resp.body.toString();
     }
+  }
+
+  Future<SpotifyPlaylist> playlists() async {
+    final http.Response _resp =
+        await _helper.get('https://api.spotify.com/v1/me/playlists');
+
+    return SpotifyPlaylist.fromJson(jsonDecode(_resp.body));
   }
 
   Future<OAuth2Response> revokeLogin() => _helper.revokeLogin();

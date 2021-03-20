@@ -1,5 +1,5 @@
-class PrivateUserObject {
-  PrivateUserObject.fromJson(Map<String, dynamic> json) {
+class SpotifyPrivateUser {
+  SpotifyPrivateUser.fromJson(Map<String, dynamic> json) {
     country = json['country'] ?? 'No Country Found';
     displayName = json['display_name'] ?? 'No Name Provided';
     email = json['email'] ?? 'No Registered email';

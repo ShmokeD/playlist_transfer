@@ -4,6 +4,7 @@ import 'package:playlist_transfer/apis/spotify_api/spotify_api_provider.dart';
 import 'package:provider/provider.dart';
 
 import './screens/login_test_screen.dart';
+import './screens/playlist_select_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -30,6 +31,10 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         home: LoginScreen(),
+        routes: {
+          PlaylistSelectScreen.routeName: (ctx) => PlaylistSelectScreen(),
+          LoginScreen.routeName: (ctx) => LoginScreen()
+        },
       ),
     );
   }

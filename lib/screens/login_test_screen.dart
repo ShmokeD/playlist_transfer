@@ -1,7 +1,4 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:oauth2_client/access_token_response.dart';
 import 'package:provider/provider.dart';
 
 import '../apis/spotify_api/spotify_api_provider.dart';
@@ -9,7 +6,10 @@ import '../apis/youtube_api/youtube_oauth_helper.dart';
 
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 
+import './playlist_select_screen.dart';
+
 class LoginScreen extends StatefulWidget {
+  static const routeName = '/login';
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
@@ -90,7 +90,8 @@ class _LoginScreenState extends State<LoginScreen> {
               alignment: Alignment.bottomCenter,
               child: ElevatedButton(
                 child: const Text('Next'),
-                onPressed: () {},
+                onPressed: () => Navigator.of(context)
+                    .pushNamed(PlaylistSelectScreen.routeName),
               ),
             ),
           )
