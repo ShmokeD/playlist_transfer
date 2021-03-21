@@ -36,6 +36,7 @@ class OAuthHelper {
     enablePKCE: true,
     clientId: '5813d1d9d95b4369a2bee0c5d231ce2d',
     scopes: <String>[
+      'playlist-read-private',
       'user-read-recently-played',
       'user-read-playback-state',
       'user-read-email', //unnecessary scopr for debug
@@ -44,6 +45,13 @@ class OAuthHelper {
   );
 
   //code whcih was not ported to the spotuify api class and is stall passed to theis place
+
+  void printDebugInfo() async {
+    var scopes = await _helper.scopes;
+    print(scopes);
+
+    print(_helper.clientId);
+  }
 
   Future<bool> login() async {
     //Used to login from outside

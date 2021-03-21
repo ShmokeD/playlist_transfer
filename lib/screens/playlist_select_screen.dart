@@ -12,14 +12,18 @@ class PlaylistSelectScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     SpotifyApi _spotifyApi = Provider.of<SpotifyApi>(context);
 
-    _spotifyApi.playlists().then((SpotifyPlaylist value) {
-      print(value.href);
-      print(value.uri);
-    });
     return Scaffold(
         appBar: AppBar(
           title: Text('Select Your Playlists'),
         ),
-        body: Placeholder());
+        body: Container(
+          child: FutureBuilder(
+            future: _spotifyApi.playlists(),
+            builder: (_, AsyncSnapshot<List<SpotifyPlaylist>> snapshot) =>
+                snapshot.hasData
+                    ? Text(snapshot.data[0].name)
+                    : CircularProgressIndicator(),
+          ),
+        ));
   }
 }

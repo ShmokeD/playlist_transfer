@@ -19,6 +19,8 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     final SpotifyApi _spotifyApi = Provider.of<SpotifyApi>(context);
     final GoogleOauth2Helper _youtubeHelper = GoogleOauth2Helper();
+
+    _spotifyApi.printDebugInfo();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Login Test Screen Debug'),
