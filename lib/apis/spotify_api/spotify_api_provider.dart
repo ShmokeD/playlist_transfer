@@ -52,7 +52,7 @@ class SpotifyApi with ChangeNotifier {
     var itemList = (jsonDecode(_resp.body)["items"] as List);
     List<SpotifyPlaylist> playLists =
         itemList.map((e) => SpotifyPlaylist.fromJson(e)).toList();
-    print('Converted ${playLists}');
+    // print('Converted ${playLists}');
 
     return [...playLists];
   }

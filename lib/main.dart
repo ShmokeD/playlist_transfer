@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:playlist_transfer/apis/spotify_api/spotify_api_provider.dart';
-
 import 'package:provider/provider.dart';
+
+import './apis/spotify_api/spotify_api_provider.dart';
+import './providers/spotify_playlist_provider.dart';
 
 import './screens/login_test_screen.dart';
 import './screens/playlist_select_screen.dart';
@@ -14,8 +15,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<SpotifyApi>(
-      create: (_) => SpotifyApi(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<SpotifyApi>(
+          create: (_) => SpotifyApi(),
+        ),
+        ChangeNotifierProvider<SpotifyPlaylists>(
+          create: (_) => SpotifyPlaylists(),
+        ),
+      ],
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(

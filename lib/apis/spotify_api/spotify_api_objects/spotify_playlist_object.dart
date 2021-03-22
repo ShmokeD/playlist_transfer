@@ -11,7 +11,7 @@ class SpotifyPlaylist {
     type = json['type'];
     uri = json['uri'];
 
-    print('${description}   ${href}, ${name}');
+    // print('${description}   ${href}, ${name}');
   }
 
   String description;
