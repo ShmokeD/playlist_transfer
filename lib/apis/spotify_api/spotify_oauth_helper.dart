@@ -44,7 +44,7 @@ class OAuthHelper {
     ],
   );
 
-  //code whcih was not ported to the spotuify api class and is stall passed to theis place
+  //code whcih was not ported to the spotify api class and is still passed to this place
 
   void printDebugInfo() async {
     var scopes = await _helper.scopes;

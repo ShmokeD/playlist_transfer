@@ -61,5 +61,7 @@ class SpotifyApi with ChangeNotifier {
     _helper.printDebugInfo();
   }
 
+  
+
   Future<OAuth2Response> revokeLogin() => _helper.revokeLogin();
 }
