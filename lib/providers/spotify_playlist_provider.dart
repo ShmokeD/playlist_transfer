@@ -9,9 +9,11 @@ class SpotifyPlaylists extends ChangeNotifier {
     return [..._playlists];
   }
 
-  void addPlaylist(SpotifyPlaylist addition) {
-    _playlists.add(addition);
+  void addPlaylist(SpotifyPlaylist playlist) {
+    _playlists.add(playlist);
     _playlists.toSet().toList(); //removes doubles
+    // print(playlist.tracks[0].artists);
+
     notifyListeners();
   }
 
@@ -22,5 +24,12 @@ class SpotifyPlaylists extends ChangeNotifier {
 
   bool isPresent(String id) {
     return _playlists.any((element) => element.id == id);
+  }
+
+  void printDebug() {
+    _playlists.forEach((element) {
+      print(element.name);
+      print(element.tracks[0].artists);
+    });
   }
 }

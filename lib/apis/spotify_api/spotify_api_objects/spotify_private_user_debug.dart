@@ -1,3 +1,5 @@
+/* Deprecated file, will be removed during cleanup */
+
 class SpotifyPrivateUser {
   SpotifyPrivateUser.fromJson(Map<String, dynamic> json) {
     country = json['country'] ?? 'No Country Found';

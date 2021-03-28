@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import './apis/spotify_api/spotify_api_provider.dart';
 import './providers/spotify_playlist_provider.dart';
 
+import './apis/youtube_api/youtube_api_provider.dart';
+
 import './screens/login_test_screen.dart';
 import './screens/playlist_select_screen.dart';
 
@@ -23,6 +25,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<SpotifyPlaylists>(
           create: (_) => SpotifyPlaylists(),
         ),
+        ChangeNotifierProvider<YoutubeApi>(
+          create: (_) => YoutubeApi(),
+        )
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

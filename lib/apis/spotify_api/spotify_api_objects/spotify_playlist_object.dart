@@ -1,10 +1,13 @@
-import 'spotify_external_url.dart';
+import './spotify_track_object.dart';
 
 class SpotifyPlaylist {
-  SpotifyPlaylist.fromJson(Map<String, dynamic> json) {
+  SpotifyPlaylist.fromJson(
+      Map<String, dynamic> json, List<SpotifyTrack> inputTracks) {
+    //NOTE: dont set arguement name same as internal variable name please ;-(
     description = json['description'] ?? 'No description';
     // external_urls = json['external_urls'];
     // print(json['external_urls']);
+    tracks = [...inputTracks];
     href = json['href'];
     id = json['id'];
     name = json['name'];
@@ -13,9 +16,8 @@ class SpotifyPlaylist {
 
     // print('${description}   ${href}, ${name}');
   }
-
+  List<SpotifyTrack> tracks;
   String description;
-  String external_urls; //returns only a single url so no need for another obj
   String href;
   String id;
   String name;
