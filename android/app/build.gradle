@@ -34,7 +34,7 @@ android {
 
     signingConfigs {
         debug {
-            storeFile file('D:/Projects/debugKey.jks')
+            storeFile file('../../../debugKey.jks')
             storePassword 'Omkesh@keystore10.1'
             keyAlias 'debugKey'
             keyPassword 'Omkesh@keystore10.1'
