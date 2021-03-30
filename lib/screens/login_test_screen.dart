@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../apis/spotify_api/spotify_api_provider.dart';
-import '../apis/youtube_api/youtube_oauth_helper.dart';
+import '../apis/youtube_api/youtube_api_provider.dart';
 
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 
@@ -15,12 +15,16 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  Widget _printYtStatus(YoutubeApi youtubeApi) {
+    youtubeApi.getAccount();
+    return const Text('Logged in to YouTube');
+  }
+
   @override
   Widget build(BuildContext context) {
     final SpotifyApi _spotifyApi = Provider.of<SpotifyApi>(context);
-    final GoogleOauth2Helper _youtubeHelper = GoogleOauth2Helper();
-
-    _spotifyApi.printDebugInfo();
+    final YoutubeApi _youtubeApi = Provider.of<YoutubeApi>(context);
+    // _spotifyApi.printDebugInfo();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Login Test Screen Debug'),
@@ -62,27 +66,31 @@ class _LoginScreenState extends State<LoginScreen> {
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              SignInButton(Buttons.Google,
-                  onPressed: () =>
-                      _youtubeHelper.login().then((_) => setState(() {}))),
+              SignInButton(Buttons.Google, onPressed: () {
+                _youtubeApi.login().then((_) => setState(() {}));
+                _youtubeApi.getAccount();
+              }),
               // ElevatedButton(
               //     onPressed: () =>
-              //         _youtubeHelper.login().then((_) => setState(() {})),
+              //         _youtubeApi.login().then((_) => setState(() {})),
               //     child: const Text('Login With Youtube')),
               ElevatedButton(
                   onPressed: () =>
-                      _youtubeHelper.revokeLogin().then((_) => setState(() {})),
-                  child: const Text('Logout of YouTube'))
+                      _youtubeApi.revokeLogin().then((_) => setState(() {})),
+                  child: const Text('Logout of YouTube')),
+              ElevatedButton(
+                  onPressed: _youtubeApi.printDebug,
+                  child: const Text('print yt debug'))
             ],
           ),
           Container(
             width: double.infinity,
             padding: const EdgeInsets.all(10),
             child: FutureBuilder(
-              future: _youtubeHelper.isLoggedIn,
+              future: _youtubeApi.isLoggedIn,
               builder: (_, AsyncSnapshot<bool> snapshot) => snapshot.hasData
                   ? snapshot.data
-                      ? const Text('Logged in to Youtube')
+                      ? _printYtStatus(_youtubeApi)
                       : const Text('Not Logged in to YouTube')
                   : const Text('Waiting for YouTube Login'),
             ),

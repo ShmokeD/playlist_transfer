@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/foundation.dart';
-import 'package:oauth2_client/access_token_response.dart';
 import 'package:oauth2_client/oauth2_response.dart';
 
 import './spotify_oauth_helper.dart';
@@ -27,13 +26,17 @@ class SpotifyApi with ChangeNotifier {
     return _response;
   }
 
-  Future<SpotifyPrivateUser> getUserProfile() async {
+  //TODO remove function
+  Future<SpotifyPrivateUser> getUserProfileDebug() async {
+    //unneded function
     final http.Response _resp =
         await _helper.get('https://api.spotify.com/v1/me');
     return SpotifyPrivateUser.fromJson(jsonDecode(_resp.body));
   }
 
-  Stream<String> currentlyPlaying() async* {
+  //TODO remove function
+
+  Stream<String> currentlyPlayingDebug() async* {
     while (true) {
       final http.Response _resp =
           await _helper.get('https://api.spotify.com/v1/me/player');
@@ -52,7 +55,9 @@ class SpotifyApi with ChangeNotifier {
 
     /*Requesting track from inside playlist object will require passing
     provider to object and to prevent that, tracks are also requested here 
-    and passed to the spotify object */
+    and passed to the spotify object .
+    Although it makes the loading a little longer, it saves a ton of headache for later :)
+    */
 
     List<SpotifyPlaylist> playLists = [];
 

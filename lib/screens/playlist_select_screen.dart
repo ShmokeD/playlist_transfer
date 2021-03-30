@@ -34,12 +34,17 @@ class _PlaylistSelectScreenState extends State<PlaylistSelectScreen> {
     final SpotifyPlaylists _spotifyPlaylists =
         Provider.of<SpotifyPlaylists>(context);
 
+    final YoutubeApi _youtubeApi = Provider.of<YoutubeApi>(context);
+
     Provider.of<YoutubeApi>(context).printPlaylist(context);
 
     final height = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Scaffold(
-        floatingActionButton: FloatingActionButton(onPressed: _spotifyPlaylists.printDebug,), //debug
+        floatingActionButton: FloatingActionButton(
+          onPressed: () =>
+              _youtubeApi.search('Feel the fire breath vocal remix'),
+        ), //debug
         body: Column(
           children: [
             Container(
