@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
 
 import '../apis/spotify_api/spotify_api_provider.dart';
 import '../apis/youtube_api/youtube_api_provider.dart';
-
-import 'package:flutter_signin_button/flutter_signin_button.dart';
 
 import './playlist_select_screen.dart';
 
@@ -70,10 +69,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 _youtubeApi.login().then((_) => setState(() {}));
                 _youtubeApi.getAccount();
               }),
-              // ElevatedButton(
-              //     onPressed: () =>
-              //         _youtubeApi.login().then((_) => setState(() {})),
-              //     child: const Text('Login With Youtube')),
               ElevatedButton(
                   onPressed: () =>
                       _youtubeApi.revokeLogin().then((_) => setState(() {})),

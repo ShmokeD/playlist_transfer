@@ -7,8 +7,6 @@ import '../apis/spotify_api/spotify_api_objects/spotify_playlist_object.dart';
 import '../widgets/playlist_selector_widget.dart';
 import '../widgets/playlist_transfer_dialog.dart';
 
-import '../apis/youtube_api/youtube_api_provider.dart';
-
 import '../providers/spotify_playlist_provider.dart';
 
 class PlaylistSelectScreen extends StatefulWidget {
@@ -42,10 +40,6 @@ class _PlaylistSelectScreenState extends State<PlaylistSelectScreen> {
     final SpotifyApi _spotifyApi = Provider.of<SpotifyApi>(context);
     final SpotifyPlaylists _spotifyPlaylists =
         Provider.of<SpotifyPlaylists>(context);
-
-    final YoutubeApi _youtubeApi = Provider.of<YoutubeApi>(context);
-
-    // Provider.of<YoutubeApi>(context).printPlaylist(context);
 
     final height = MediaQuery.of(context).size.height;
     return SafeArea(

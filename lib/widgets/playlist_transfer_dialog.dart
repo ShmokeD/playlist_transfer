@@ -55,16 +55,8 @@ class _PlaylistTransferDialogState extends State<PlaylistTransferDialog> {
           ],
         ),
       ),
-      // content: SizedBox(
-      //   height: 100,
-      //   child: Column(
-      //     children: [
-      //       Text('Please Dont Close this app'),
-      //     ],
-      //   ),
-      // ),
+
       elevation: 10,
-      // titleTextStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
     );
   }
 }

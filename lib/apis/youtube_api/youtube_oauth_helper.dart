@@ -29,14 +29,4 @@ class GoogleOauth2Helper {
   Future<Map<String, String>> get authHeaders async {
     return _account.authHeaders;
   }
-
-  void printDebug() async {
-    if (await _helper.isSignedIn()) {
-      print('signedin ');
-    }
-    print(await _account.authHeaders);
-  }
-  // Future<AccessTokenResponse> get token async {
-  //   return await _helper.getTokenFromStorage();
-  // }
 }

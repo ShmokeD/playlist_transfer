@@ -12,8 +12,7 @@ class PlaylistSelector extends StatefulWidget {
   _PlaylistSelectorState createState() => _PlaylistSelectorState();
 }
 
-// Current Plan s to mainitain a list of selected playlists and make it visible from outside to be pushed
-//Change of plans. Just going to add to the provider in realtime
+//playlists are added to provider immediately upon selection
 class _PlaylistSelectorState extends State<PlaylistSelector> {
   @override
   Widget build(BuildContext context) {

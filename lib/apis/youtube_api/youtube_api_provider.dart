@@ -27,10 +27,6 @@ class YoutubeApi with ChangeNotifier {
     _helper.getAccount();
   }
 
-  void printDebug() {
-    _helper.printDebug();
-  }
-
   Future<String> createPlaylist(String title) async {
     final Uri uri = Uri.https('www.googleapis.com', '/youtube/v3/playlists', {
       'part': ['snippet', 'status'],
@@ -56,7 +52,6 @@ class YoutubeApi with ChangeNotifier {
     };
     http.Response _resp = await http.post(uri,
         body: jsonEncode(body), headers: await _helper.authHeaders);
-    print(_resp.body);
     return _resp.statusCode;
   }
 
@@ -70,9 +65,6 @@ class YoutubeApi with ChangeNotifier {
     });
     http.Response resp =
         await http.get(uri, headers: await _helper.authHeaders);
-    print(searchArg);
-    print(resp.body);
-    var breaks = (jsonDecode(resp.body)['items'] as List)[0]['id']['videoId'];
     return (jsonDecode(resp.body)['items'][0]['id']['videoId']);
   }
 }

@@ -1,22 +1,11 @@
 class SpotifyTrack {
   SpotifyTrack.fromJson(Map<String, dynamic> json) {
-    // print(json);
-    // print(json['track']['artists'][0]);
     (json['track']['artists'] as List).forEach((element) {
-      // print(element['name']);
       artists.add(element['name']);
     });
 
-    // print(artists);
-    //BUG: trackname and id assignments need to be fixed here
     trackName = json['track']['name'] ?? 'TestTrack';
     id = json['track']['id'] ?? 'TestID';
-
-    // print('Spotfy Tracl object');
-    // print('id $id');
-    // print('trackanme $trackName');
-    // print('\n');
-    // print('\n');
   }
   List<String> artists = [];
   String trackName;

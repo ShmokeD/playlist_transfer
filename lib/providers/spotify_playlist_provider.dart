@@ -66,11 +66,4 @@ class SpotifyPlaylists extends ChangeNotifier {
   bool isPresent(String id) {
     return _playlists.any((element) => element.id == id);
   }
-
-  void printDebug() {
-    _playlists.forEach((element) {
-      print(element.name);
-      print(element.tracks[0].artists);
-    });
-  }
 }
