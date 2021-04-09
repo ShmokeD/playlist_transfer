@@ -1,4 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:playlist_transfer/apis/spotify_api/spotify_api_objects/spotify_track_object.dart';
 import 'package:provider/provider.dart';
 
 import '../apis/spotify_api/spotify_api_objects/spotify_playlist_object.dart';
@@ -20,15 +22,37 @@ class SpotifyPlaylists extends ChangeNotifier {
     notifyListeners();
   }
 
-  void toYoutube(BuildContext context) async {
-    //For each playlist
-    //create equivalent playlist
-    //for each track
-    //search yt
-    //add track to playlst
+  Stream<List<dynamic>> toYoutube(BuildContext context) async* {
+    bool errFlag = false;
+    List<dynamic> yieldVal = [0, 'Initialising'];
+    yield yieldVal;
+    int incPlist =
+        100 ~/ _playlists.length; //amount to increment per playlist completion
+    //~/ division is converted to integer
 
     YoutubeApi _youtubeApi = Provider.of<YoutubeApi>(context, listen: false);
-    for (SpotifyPlaylist sPlaylist in _playlists) {}
+    for (SpotifyPlaylist sPlaylist in _playlists) {
+      if (errFlag) break;
+      String pListId = await _youtubeApi.createPlaylist(sPlaylist.name);
+      yieldVal[1] = sPlaylist.name;
+      yield yieldVal;
+      int incTrack = incPlist ~/ sPlaylist.tracks.length;
+
+      for (SpotifyTrack sTrack in sPlaylist.tracks) {
+        String vidId = await _youtubeApi
+            .search('${sTrack.trackName} ${sTrack.artists.toString()}');
+        int statCode = await _youtubeApi.addVidToPlist(vidId, pListId);
+        if (statCode == 429) {
+          yield [101, 'RateExceeded'];
+          break;
+          errFlag = true;
+        }
+
+        yieldVal[0] += incTrack;
+        yield yieldVal;
+      }
+    }
+    if (!errFlag) yield [100, 'Completed'];
   }
 
   void removePlaylist(String id) {

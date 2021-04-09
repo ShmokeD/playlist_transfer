@@ -45,7 +45,7 @@ class YoutubeApi with ChangeNotifier {
     return jsonDecode(_resp.body)['id'];
   }
 
-  Future<bool> addVidToPlist(String vidId, String pListId) async {
+  Future<int> addVidToPlist(String vidId, String pListId) async {
     final Uri uri = Uri.https(
         'www.googleapis.com', '/youtube/v3/playlistItems', {'part': 'snippet'});
     Map<String, dynamic> body = {
@@ -56,7 +56,7 @@ class YoutubeApi with ChangeNotifier {
     };
     http.Response _resp = await http.post(uri,
         body: jsonEncode(body), headers: await _helper.authHeaders);
-    return (_resp.statusCode == 200);
+    return _resp.statusCode;
   }
 
   Future<String> search(String searchArg) async {
