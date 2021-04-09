@@ -46,13 +46,6 @@ class OAuthHelper {
 
   //code whcih was not ported to the spotify api class and is still passed to this place
 
-  void printDebugInfo() async {
-    var scopes = _helper.scopes;
-    print(scopes);
-
-    print(_helper.clientId);
-  }
-
   Future<bool> login() async {
     //Used to login from outside
     final AccessTokenResponse token = await _helper.getToken();

@@ -23,7 +23,6 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     final SpotifyApi _spotifyApi = Provider.of<SpotifyApi>(context);
     final YoutubeApi _youtubeApi = Provider.of<YoutubeApi>(context);
-    // _spotifyApi.printDebugInfo();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Login Test Screen Debug'),
@@ -36,7 +35,6 @@ class _LoginScreenState extends State<LoginScreen> {
               children: <Widget>[
                 ElevatedButton(
                     onPressed: () => _spotifyApi.login().then((_) {
-                          print('Completed');
                           setState(() {});
                         }),
                     child: const Text('Login to Spotify')),

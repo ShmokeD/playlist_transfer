@@ -5,16 +5,12 @@ class SpotifyPlaylist {
       Map<String, dynamic> json, List<SpotifyTrack> inputTracks) {
     //NOTE: dont set arguement name same as internal variable name please ;-(
     description = json['description'] ?? 'No description';
-    // external_urls = json['external_urls'];
-    // print(json['external_urls']);
     tracks = [...inputTracks];
     href = json['href'];
     id = json['id'];
     name = json['name'];
     type = json['type'];
     uri = json['uri'];
-
-    // print('${description}   ${href}, ${name}');
   }
   List<SpotifyTrack> tracks;
   String description;

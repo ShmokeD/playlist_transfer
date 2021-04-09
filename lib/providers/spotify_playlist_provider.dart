@@ -42,15 +42,12 @@ class SpotifyPlaylists extends ChangeNotifier {
         String vidId = await _youtubeApi
             .search('${sTrack.trackName} ${sTrack.artists.toString()}');
 
-        print('search ${sTrack.trackName} received $vidId');
-
         int statCode = await _youtubeApi.addVidToPlist(vidId, pListId);
         if (statCode == 429) {
           yield [101, 'RateExceeded'];
           errFlag = true;
           break;
         }
-        print('added');
         yieldVal[0] += incTrack;
         yield yieldVal;
       }
