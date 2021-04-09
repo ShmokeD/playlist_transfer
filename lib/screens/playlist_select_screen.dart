@@ -24,8 +24,17 @@ class _PlaylistSelectScreenState extends State<PlaylistSelectScreen> {
         ? ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text('Select a Playlist'),
           ))
-        : showDialog(
-            context: context, builder: (_) => PlaylistTransferDialog());
+        : showDialog(context: context, builder: (_) => PlaylistTransferDialog())
+            .then((value) {
+            String text = '';
+            if (value == 'Success') text = 'Task Completed Successfully';
+            if (value == 'RateLimit')
+              text = 'Rate Limit Exceeded. Try again Later';
+            if (value == 'Error') text = 'Error Occured';
+
+            ScaffoldMessenger.of(context)
+                .showSnackBar(SnackBar(content: Text(text)));
+          });
   }
 
   @override
@@ -41,11 +50,6 @@ class _PlaylistSelectScreenState extends State<PlaylistSelectScreen> {
     final height = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Scaffold(
-        floatingActionButton: FloatingActionButton(
-            onPressed: () => _youtubeApi
-                .addVidToPlist(
-                    'IkOv5PTwWjI', 'PLYPboJQ39LJHa6lZyOgJni9eYHo3Jp6Kf')
-                .then((value) => print(value))), //debug
         body: Column(
           children: [
             Container(

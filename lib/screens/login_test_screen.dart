@@ -78,9 +78,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   onPressed: () =>
                       _youtubeApi.revokeLogin().then((_) => setState(() {})),
                   child: const Text('Logout of YouTube')),
-              ElevatedButton(
-                  onPressed: _youtubeApi.printDebug,
-                  child: const Text('print yt debug'))
             ],
           ),
           Container(

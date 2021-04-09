@@ -9,8 +9,8 @@ class SpotifyTrack {
 
     // print(artists);
     //BUG: trackname and id assignments need to be fixed here
-    trackName = json['name'] ?? 'TestTrack';
-    id = json['id'] ?? 'TestID';
+    trackName = json['track']['name'] ?? 'TestTrack';
+    id = json['track']['id'] ?? 'TestID';
 
     // print('Spotfy Tracl object');
     // print('id $id');
