@@ -24,7 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_signin_button: ^1.1.0
-  google_sign_in: ^5.0.0
+  google_sign_in: ^5.0.1
   oauth2_client: ^1.7.1
   provider: ^5.0.0
 

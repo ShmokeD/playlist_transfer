@@ -1,6 +1,9 @@
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../apis/spotify_api/spotify_api_objects/spotify_playlist_object.dart';
+
+import '../apis/youtube_api/youtube_api_provider.dart';
 
 class SpotifyPlaylists extends ChangeNotifier {
   List<SpotifyPlaylist> _playlists = [];
@@ -15,6 +18,17 @@ class SpotifyPlaylists extends ChangeNotifier {
     // print(playlist.tracks[0].artists);
 
     notifyListeners();
+  }
+
+  void toYoutube(BuildContext context) async {
+    //For each playlist
+    //create equivalent playlist
+    //for each track
+    //search yt
+    //add track to playlst
+
+    YoutubeApi _youtubeApi = Provider.of<YoutubeApi>(context, listen: false);
+    for (SpotifyPlaylist sPlaylist in _playlists) {}
   }
 
   void removePlaylist(String id) {

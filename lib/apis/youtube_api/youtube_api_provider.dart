@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
@@ -8,11 +10,6 @@ import '../spotify_api/spotify_api_provider.dart';
 
 class YoutubeApi with ChangeNotifier {
   final GoogleOauth2Helper _helper = GoogleOauth2Helper();
-
-  void printPlaylist(BuildContext context) {
-    SpotifyApi _spotApi = Provider.of<SpotifyApi>(context);
-    // _spotApi.printDebugInfo();
-  }
 
   Future<bool> login() async {
     return await _helper.login(); //passed directly from helper
@@ -34,18 +31,45 @@ class YoutubeApi with ChangeNotifier {
     _helper.printDebug();
   }
 
+  Future<String> createPlaylist(String title) async {
+    final Uri uri = Uri.https('www.googleapis.com', '/youtube/v3/playlists', {
+      'part': ['snippet', 'status'],
+      'fields': 'id'
+    });
+    final Map<String, dynamic> body = {
+      'snippet': {'title': title},
+      'status': {'privacyStatus': 'private'},
+    };
+    http.Response _resp = await http.post(uri,
+        body: jsonEncode(body), headers: await _helper.authHeaders);
+    return jsonDecode(_resp.body)['id'];
+  }
+
+  Future<bool> addVidToPlist(String vidId, String pListId) async {
+    final Uri uri = Uri.https(
+        'www.googleapis.com', '/youtube/v3/playlistItems', {'part': 'snippet'});
+    Map<String, dynamic> body = {
+      'snippet': {
+        'playlistId': pListId,
+        'resourceId': {'kind': 'youtube#video', 'videoId': vidId}
+      }
+    };
+    http.Response _resp = await http.post(uri,
+        body: jsonEncode(body), headers: await _helper.authHeaders);
+    return (_resp.statusCode == 200);
+  }
+
   Future<String> search(String searchArg) async {
     Uri uri = Uri.https('www.googleapis.com', '/youtube/v3/search', {
       'part': 'snippet',
-      'fields': 'items(id,snippet/title)',
+      'fields': 'items(id)',
       'type': 'video',
       'q': searchArg,
-      'maxResults': '3'
+      'maxResults': '1'
     });
     http.Response resp =
         await http.get(uri, headers: await _helper.authHeaders);
-    print(resp.body);
-    return (resp.body);
+    return (jsonDecode(resp.body)['items'][0]['id']['videoId']);
   }
 }
 

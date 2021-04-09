@@ -36,15 +36,16 @@ class _PlaylistSelectScreenState extends State<PlaylistSelectScreen> {
 
     final YoutubeApi _youtubeApi = Provider.of<YoutubeApi>(context);
 
-    Provider.of<YoutubeApi>(context).printPlaylist(context);
+    // Provider.of<YoutubeApi>(context).printPlaylist(context);
 
     final height = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
-          onPressed: () =>
-              _youtubeApi.search('Feel the fire breath vocal remix'),
-        ), //debug
+            onPressed: () => _youtubeApi
+                .addVidToPlist(
+                    'IkOv5PTwWjI', 'PLYPboJQ39LJHa6lZyOgJni9eYHo3Jp6Kf')
+                .then((value) => print(value))), //debug
         body: Column(
           children: [
             Container(
