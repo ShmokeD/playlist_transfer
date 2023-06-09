@@ -34,18 +34,18 @@ android {
 
     signingConfigs {
 
-        release {
-            storeFile file('../../../releaseKey.jks')
-            storePassword 'Omkesh@release10.1'
-            keyAlias 'androidreleasekey'
-            keyPassword 'Omkesh@release10.1'
-        }
+        // release {
+        //     storeFile file('../../../releaseKey.jks')
+        //     storePassword 'Omkesh@release10.1'
+        //     keyAlias 'androidreleasekey'
+        //     keyPassword 'Omkesh@release10.1'
+        // }
          
         debug {
-            storeFile file('../../../debugKey.jks')
-            storePassword '1234567890'
+            storeFile file('E:/programming/debug.keystore')
+            storePassword 'android'
             keyAlias 'androiddebugkey'
-            keyPassword '1234567890'
+            keyPassword 'android'
         }
     }
 
