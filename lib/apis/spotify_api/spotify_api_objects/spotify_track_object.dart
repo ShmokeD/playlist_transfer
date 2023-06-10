@@ -1,11 +1,17 @@
 class SpotifyTrack {
   SpotifyTrack.fromJson(Map<String, dynamic> json) {
-    (json['track']['artists'] as List).forEach((element) {
-      artists.add(element['name']);
-    });
+    //apparently track can be null
+    if (json['track'] == null) {
+      trackName = 'nullTrack';
+      id = '0';
+    } else {
+      (json['track']['artists'] as List).forEach((element) {
+        artists.add(element['name']);
+      });
 
-    trackName = json['track']['name'] ?? 'TestTrack';
-    id = json['track']['id'] ?? 'TestID';
+      trackName = json['track']['name'] ?? 'TestTrack';
+      id = json['track']['id'] ?? 'TestID';
+    }
   }
   List<String> artists = [];
   String trackName;
