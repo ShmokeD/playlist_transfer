@@ -3,6 +3,6 @@ class SpotifyExternalUrl {
     spotifyUrl = json['spotify'] ?? 'null url returned';
   }
 
-  String spotifyUrl;
+  String spotifyUrl = 'null';
 }
 /* Thats it thats the ExternalUrlObject that spotfy returns */

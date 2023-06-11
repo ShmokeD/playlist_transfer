@@ -27,7 +27,7 @@ class YoutubeApi with ChangeNotifier {
     _helper.getAccount();
   }
 
-  Future<String> createPlaylist(String title) async {
+  Future<String?> createPlaylist(String? title) async {
     final Uri uri = Uri.https('www.googleapis.com', '/youtube/v3/playlists', {
       'part': ['snippet', 'status'],
       'fields': 'id'
@@ -41,7 +41,7 @@ class YoutubeApi with ChangeNotifier {
     return jsonDecode(_resp.body)['id'];
   }
 
-  Future<int> addVidToPlist(String vidId, String pListId) async {
+  Future<int> addVidToPlist(String? vidId, String? pListId) async {
     final Uri uri = Uri.https(
         'www.googleapis.com', '/youtube/v3/playlistItems', {'part': 'snippet'});
     Map<String, dynamic> body = {
@@ -55,7 +55,7 @@ class YoutubeApi with ChangeNotifier {
     return _resp.statusCode;
   }
 
-  Future<String> search(String searchArg) async {
+  Future<String?> search(String searchArg) async {
     Uri uri = Uri.https('www.googleapis.com', '/youtube/v3/search', {
       'part': 'snippet',
       'fields': 'items(id,snippet/title)',

@@ -33,13 +33,13 @@ class SpotifyPlaylists extends ChangeNotifier {
     YoutubeApi _youtubeApi = Provider.of<YoutubeApi>(context, listen: false);
     for (SpotifyPlaylist sPlaylist in _playlists) {
       if (errFlag) break;
-      String pListId = await _youtubeApi.createPlaylist(sPlaylist.name);
+      String? pListId = await _youtubeApi.createPlaylist(sPlaylist.name);
       yieldVal[1] = sPlaylist.name;
       yield yieldVal;
       int incTrack = incPlist ~/ sPlaylist.tracks.length;
 
       for (SpotifyTrack sTrack in sPlaylist.tracks) {
-        String vidId = await _youtubeApi
+        String? vidId = await _youtubeApi
             .search('${sTrack.trackName} ${sTrack.artists.toString()}');
 
         int statCode = await _youtubeApi.addVidToPlist(vidId, pListId);
@@ -55,12 +55,12 @@ class SpotifyPlaylists extends ChangeNotifier {
     if (!errFlag) yield [100, 'Completed'];
   }
 
-  void removePlaylist(String id) {
+  void removePlaylist(String? id) {
     _playlists.removeWhere((element) => element.id == id);
     notifyListeners();
   }
 
-  bool isPresent(String id) {
+  bool isPresent(String? id) {
     return _playlists.any((element) => element.id == id);
   }
 }

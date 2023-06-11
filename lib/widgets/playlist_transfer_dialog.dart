@@ -28,10 +28,10 @@ class _PlaylistTransferDialogState extends State<PlaylistTransferDialog> {
                 initialData: [0, 'initialising'],
                 stream: _sPlaylists.toYoutube(context),
                 builder: (context, snapshot) {
-                  if (snapshot.data[0] == 100)
+                  if (snapshot.data![0] == 100)
                     Navigator.of(context).pop('Success');
-                  if (snapshot.data[0] > 100) {
-                    if (snapshot.data[0] == 429)
+                  if (snapshot.data![0] > 100) {
+                    if (snapshot.data![0] == 429)
                       Navigator.of(context).pop('RateLimit');
                     else
                       Navigator.of(context).pop('Error');
@@ -44,8 +44,8 @@ class _PlaylistTransferDialogState extends State<PlaylistTransferDialog> {
                         Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Text('Progress: ${snapshot.data[0]} %'),
-                            Text('${snapshot.data[1]}')
+                            Text('Progress: ${snapshot.data![0]} %'),
+                            Text('${snapshot.data![1]}')
                           ],
                         )
                       ],

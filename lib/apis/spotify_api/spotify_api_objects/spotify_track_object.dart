@@ -13,9 +13,9 @@ class SpotifyTrack {
       id = json['track']['id'] ?? 'TestID';
     }
   }
-  List<String> artists = [];
-  String trackName;
-  String id;
+  List<String?> artists = [];
+  String? trackName;
+  String? id;
 }
 
 // KEY	TYPE

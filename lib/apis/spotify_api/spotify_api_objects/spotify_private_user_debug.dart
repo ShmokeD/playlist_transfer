@@ -7,10 +7,10 @@ class SpotifyPrivateUser {
     email = json['email'] ?? 'No Registered email';
     // external_urls = ExternalUrlObject.fromJson(json['external_urls']);
   }
-  String country;
+  String? country;
 
-  String displayName;
-  String email;
+  String? displayName;
+  String? email;
   // ExternalUrlObject external_urls;
   // FolllowersObject followers;
   // String href;

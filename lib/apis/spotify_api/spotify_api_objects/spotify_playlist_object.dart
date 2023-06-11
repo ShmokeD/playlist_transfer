@@ -12,13 +12,13 @@ class SpotifyPlaylist {
     type = json['type'];
     uri = json['uri'];
   }
-  List<SpotifyTrack> tracks;
-  String description;
-  String href;
-  String id;
-  String name;
-  String type; //Must be returned 'playlist'
-  String uri;
+  late List<SpotifyTrack> tracks;
+  String? description;
+  String? href;
+  String? id;
+  String? name;
+  String? type; //Must be returned 'playlist'
+  String? uri;
 }
 
 // description

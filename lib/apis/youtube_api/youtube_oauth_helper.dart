@@ -1,7 +1,7 @@
 import 'package:google_sign_in/google_sign_in.dart';
 
 class GoogleOauth2Helper {
-  GoogleSignInAccount _account;
+  GoogleSignInAccount? _account;
   final GoogleSignIn _helper = GoogleSignIn(
       // clientId:
       //     '629173728631-clnrfetub3mk6h0ebmd8uci2je1e2uk0.apps.googleusercontent.com',
@@ -27,6 +27,6 @@ class GoogleOauth2Helper {
   }
 
   Future<Map<String, String>> get authHeaders async {
-    return _account.authHeaders;
+    return _account!.authHeaders;
   }
 }

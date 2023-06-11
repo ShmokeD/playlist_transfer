@@ -50,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
               future: _spotifyApi.isLoggedIn,
               builder: (_, AsyncSnapshot<bool> snapshot) {
                 return snapshot.hasData
-                    ? snapshot.data
+                    ? snapshot.data!
                         ? const Text('Logged in to Spotify!!')
                         : const Text('Not Logged in to Spotify')
                     : const Text('Waiting for spotify login');
@@ -79,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
             child: FutureBuilder(
               future: _youtubeApi.isLoggedIn,
               builder: (_, AsyncSnapshot<bool> snapshot) => snapshot.hasData
-                  ? snapshot.data
+                  ? snapshot.data!
                       ? _printYtStatus(_youtubeApi)
                       : const Text('Not Logged in to YouTube')
                   : const Text('Waiting for YouTube Login'),

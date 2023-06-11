@@ -51,7 +51,7 @@ class SpotifyApi with ChangeNotifier {
     final requestUrl =
         Uri.parse('https://api.spotify.com/v1/playlists/' + playlistId);
     final http.Response _resp = await _helper.get(requestUrl.toString());
-    var trackList = ((jsonDecode(_resp.body)['tracks']['items'] as List));
+    var trackList = jsonDecode(_resp.body)['tracks']['items'] as List;
 
     List<SpotifyTrack> tracks =
         trackList.map((e) => SpotifyTrack.fromJson(e)).toList();

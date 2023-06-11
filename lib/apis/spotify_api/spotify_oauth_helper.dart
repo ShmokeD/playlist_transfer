@@ -13,7 +13,7 @@ import 'package:oauth2_client/oauth2_response.dart'; //required for the @require
 // Created my own OAyth client for spotify since the library does not provide one.
 class SpotifyOAuth2Client extends OAuth2Client {
   SpotifyOAuth2Client(
-      {@required String redirectUri, @required String customUriScheme})
+      {required String redirectUri, required String customUriScheme})
       : super(
           customUriScheme: customUriScheme,
           redirectUri: redirectUri,
@@ -48,7 +48,7 @@ class OAuthHelper {
 
   Future<bool> login() async {
     //Used to login from outside
-    final AccessTokenResponse token = await _helper.getToken();
+    final AccessTokenResponse token = (await _helper.getToken()) as AccessTokenResponse ;
     return token.isValid();
   }
 
@@ -62,7 +62,7 @@ class OAuthHelper {
   }
 
   //debug properties
-  Future<AccessTokenResponse> get token async {
+  Future<AccessTokenResponse?> get token async {
     return await _helper.getTokenFromStorage();
   }
 }
